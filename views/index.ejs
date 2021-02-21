@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <%- include('inc/metatag.ejs') %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="KiRRxA551B0Uj9qczyJk5lMrc8oBy81gxr_elklHGb8" />
+    <link rel="stylesheet" href="/css/Theme.css">
+    <link rel="stylesheet" href="/css/twilight.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Home page - devtenare</title>
+</head>
+
+<body>
+  <div class="mcontainer">
+    <label class="mode-control">
+      <input type="checkbox" id="mode-btn">
+      <span><i class="fas fa-moon"></i></span>
+      <span><i class="fas fa-sun"></i></span>
+    </label>
+    <div class="header">
+      <div class="title" style="display: none;">
+        www.sitename.com or cookie permission
+      </div>
+      <div class="headercont">
+        <div class="logo">
+          <img loading="lazy" src="/img/827-300x300-grayscale.jpg" alt="err" />
+        </div>
+        <div class="menu">
+          <li><a href="#">home</a></li>
+          <li><a href="#">home</a></li>
+          <li><a href="#">home</a></li>
+          <li><a href="#">home</a></li>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="contentcont">
+        <div class="left">&nbsp;left&nbsp;</div>
+        <div class="center">
+          <%- include('inc/banner.ejs') %>
+            <div class="textcont">
+              <% var count=data.length; if(count==0){ %>
+                <div class="textdiv ">
+                  <div class="texttitle talignc" style="padding: 30px 0;">
+                    <a href="javascript:void(0)">Sorry, there is no text yet. :(</a>
+                  </div>
+                </div>
+                <% } else{ for(var i=0; i < count; i++){ %>
+                  <div class="textdiv entry">
+                    <div class="texttitle">
+                      <a href="/posts/<%= data[i].url %>/">
+                        <%= data[i].title %>
+                      </a>
+                    </div>
+                    <div class="textinfo">
+                      <div class="datecont">
+                        <span class="dateicon">
+                          <i class="fas fa-clock"></i>
+                        </span>
+                        <span class="date">
+                          <%- date[i] %>
+                        </span>
+                      </div>
+                      <div class="authorcont">
+                        <span class="authoricon">
+                          <i class="fas fa-pencil-alt"></i>
+                        </span>
+                        <span class="author">
+                          <%= data[i]['author'] %>
+                        </span>
+                      </div>
+
+                      <div class="categorycont">
+                        <span class="categoryicon">
+                          <i class="fa fa-list"></i>
+                        </span>
+                        <span class="category">
+                          <%= data[i].category %>
+                        </span>
+                      </div>
+                    </div>
+                    <% if(locals.data[i].videourl){ %>
+                      <div class="textvideo">
+                        <iframe src="<%= data[i].videourl %>"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowfullscreen></iframe>
+                      </div>
+                      <% } %>
+
+                        <% if(locals.data[i].thumburl){ %>
+                          <img class="textimg" loading="lazy" src="/img/istanbulayasofya.jpg" alt="ERR" />
+                          <% } %>
+                            <%- data[i].article %>
+                  </div>
+                  <div class="btngroup">
+                    <a href="/posts/<%= data[i].url %>/" class="textbtn">
+                      Read More
+                    </a>
+                    <% if (isLogged){ %>
+                      <a href="/delete/<%= data[i].url %>/" id="delete" class="textbtn dangerbtn">
+                        Delete
+                      </a>
+                      <a href="/edit/<%= data[i].url %>/" id="edit" class="textbtn warningbtn">
+                        Edit
+                      </a>
+                      <% } %>
+                  </div>
+                  <% } } %>
+            </div>
+        </div>
+      </div>
+      <i onclick="topFunction()" id="gotopbtn" title="Go to top" class="fas fa-arrow-up"></i>
+      <script>
+        let allcodetags = document.getElementsByTagName('code');
+        for (var a = 0; a < allcodetags.length; a++)
+          allcodetags[a].innerHTML = allcodetags[a].textContent.trim();
+
+        let allblockquotes = document.getElementsByTagName('blockquote');
+        for (var j = 0; j < allblockquotes.length; j++)
+          allblockquotes[j].innerHTML = allblockquotes[j].textContent.trim();
+      </script>
+      <script src="/js/index.js"></script>
+      <script src="/js/jquery.min.js"></script>
+      <script src="/js/highlight.pack.js"></script>
+      <script src="/js/preview.js"></script>
+      <script src="/js/fontawesome.js"></script>
+      <script src="/js/utm_source.js"></script>
+      <noscript>Sorry, your browser does not support JavaScript!</noscript>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <%- include('inc/metatag.ejs') %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="mcontainer ">
+        <form method="POST" class="login" action="/adduser">
+            <% try{ if (message !==undefined) { if (status !==undefined) { %>
+                <div class="alert alert-<%= status %>">
+                    <%= message %>
+                </div>
+                <% } } } catch(err){ console.log('adduser: message or something is not defined') } %>
+                    <div class="form-group">
+                        <input required type="number" min="1" max="100"
+                            onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
+                            class="form-control" placeholder="authority" name="authority">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="userpass" name="userpass">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="fullname" name="fullname">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="email" name="email">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <% try { if(locals.users){ %>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>Authority</th>
+                        <th>Username</th>
+                        <th>Userpass</th>
+                        <th>Fullname</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach((user)=>{ %>
+                        <tr>
+                            <td>
+                                <%= user.authority %>
+                            </td>
+                            <td>
+                                <%= user.username %>
+                            </td>
+                            <td>
+                                <%= user.userpass %>
+                            </td>
+                            <td>
+                                <%= user.fullname %>
+                            </td>
+                            <td>
+                                <%= user.email %>
+                            </td>
+                        </tr>
+                        <% }) %>
+
+                </tbody>
+            </table>
+            <% } } catch(err){ console.log('error=> '+err+' <=') } %>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+npm i express body-parser bootstrap dotenv ejs express express-session md5 mongoose @sindresorhus/slugify timeago.js --save

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <%- include('inc/metatag.ejs') %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="mcontainer login">
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <button type="button" class="btn btn-dark" onclick="window.location.href='/'">Home</button>
+            </div>
+            <% try{ if (message !==undefined) { if (status !==undefined) { %>
+                <div class="alert alert-<%= status %>">
+                    <%= message %>
+                </div>
+                <% } } } catch(err){ console.log('signin: message or something is not defined') } %>
+            <h1>Login</h1>
+                <div class="form-group">
+                <input required type="text" class="form-control" id="username" value="" placeholder="username" name="username">
+            </div>
+            <div class="form-group">
+                <input required type="password" class="form-control" id="userpass" value="" placeholder="password" name="userpass">
+            </div>
+            <div class="form-group">
+                Still you are not member? <a href="/signup">Let's do this</a>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

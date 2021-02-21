@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <%- include('inc/metatag.ejs') %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="mcontainer ">
+        <form method="POST" class="login" action="/signup">
+            <% try{ if (message !==undefined) { if (status !==undefined) { %>
+                <div class="alert alert-<%= status %>">
+                    <%= message %>
+                </div>
+                <% } } } catch(err){ console.log('adduser: message or something is not defined') } %>
+                <h1>Sign up</h1>    
+                <div class="form-group">
+                        <input type="text" class="form-control" placeholder="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="userpass" name="userpass">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="fullname" name="fullname">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        You are already member? <a href="/login">Come here</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign up</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

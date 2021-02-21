@@ -1,0 +1,42 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #000;
+    overflow: hidden;
+}
+
+.fof {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fof canvas,
+.fof img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+    z-index: 1;
+
+    background: #000;
+}
+
+.show {
+    position: fixed;
+    left: 50%;
+    bottom: 10px;
+    transform: translate(-50%, -50%);
+    color: #f1f1f1;
+    z-index: 99;
+    font-family: Prata, serif;
+    font-size: 1.8em;
+    
+}
+
+.show a {
+    color: #eee;
+}

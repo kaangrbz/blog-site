@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('inc/metatag.ejs') %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Text</title>
+  <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+  <div class="mcontainer">
+    <% if(locals.willedit){ %>
+
+      <form method="POST" action="/edit/<%= url %>">
+        <% } else{ %>
+        <form method="POST" action="/addtext">
+          <% } %>
+
+          <% try{ if (message !==undefined) { if (status !==undefined) { %>
+            <div class="alert alert-<%= status %>">
+                <%= message %>
+            </div>
+            <% } } } catch(err){ console.log('addtext: message or something is not defined') } var mtitle='' ,
+              marticle='' , mvideourl='' ; if(locals.title) mtitle=title; if(locals.article) marticle=article;
+              if(locals.videourl) mvideourl=videourl; %>
+              <div class="form-group">
+                <button type="button" class="btn btn-dark" onclick="window.location.href='/'">home page</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='/login'">login page</button>
+                <button type="button" class="btn btn-warning" onclick="window.location.href='/addcat'">addcat</button>
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='/adduser'">adduser</button>
+                <button type="button" class="btn btn-danger" onclick="window.location.href='/logout'">logout</button>
+              </div>
+
+              <div class="form-group">
+                <input type="file" class="form-control" tabindex="5" disabled name="thumburl">
+              </div>
+
+              <% try{ if (categories.length> 0){ %>
+                <div class="form-group">
+                  <select class="custom-select" tabindex="4" name="category">
+                    <% for(var i=0; i < categories.length; i++){ %>
+                      <% if(locals.category){ %>
+                        <option selected value="<%= category %>">
+                          <%= category %>
+                            <% break; %>
+                        </option>
+                        <% } else if(i===0){ %>
+                          <option value="0">
+                            <%= categories[i].catname %>
+                          </option>
+                          <% } else{ %>
+                            <option value="<%= categories[i].catname %>">
+                              <%= categories[i].catname %>
+                            </option>
+                            <% } } %>
+                  </select>
+                  <% } %>
+                </div>
+                <% } catch (err){ %>
+                  <div class="alert alert-danger">categories not found</div>
+                  <% } %>
+
+                    <div class="form-group">
+                      <input type="text" class="form-control" tabindex="1" autofocus value="<%= mtitle %>"
+                        placeholder="Title *" name="title">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text" class="form-control" tabindex="2" value="<%= mvideourl %>"
+                        placeholder="Youtube video url (optional)" name="videourl" />
+                    </div>
+                    <div class="article-tools form-group">
+                      <button class="btn btn-dark articletool" type="button"
+                        onclick="addElement('textvideo')">video</button>
+                      <button class="btn btn-dark articletool" type="button"
+                        onclick="addElement('texttitle')">title</button>
+                      <button class="btn btn-dark articletool" type="button" onclick="addElement('textp')">p</button>
+                      <button class="btn btn-dark articletool" type="button"
+                        onclick="addElement('textimg')">img</button>
+                      <button class="btn btn-dark articletool" type="button"
+                        onclick="addElement('textcode')">code</button>
+                      <button class="btn btn-dark articletool" type="button"
+                        onclick="addElement('textquote')">quote</button>
+                    </div>
+                    <div class="form-group">
+                      <textarea id="article" class="form-control" tabindex="3" placeholder="Article (optional)"
+                        cols="30" rows="10" name="article"><%= marticle %></textarea>
+                    </div>
+
+                    <div class="form-group">
+                      <button class="btn btn-primary" type="submit">Share</button>
+                    </div>
+
+    </form>
+  </div>
+
+
+
+  <script src="/js/addtext.js"></script>
+</body>
+
+</html>

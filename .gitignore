@@ -1,0 +1,4 @@
+node_modules/
+dev.md
+.env
+blogMongodb/

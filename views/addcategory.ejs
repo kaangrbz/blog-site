@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <%- include('inc/metatag.ejs') %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Text</title>
+    <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <div class="mcontainer ">
+        <form method="POST" class="login" action="/addcat">
+
+            <% try{ if (message !==undefined) { if (status !==undefined) { %>
+                <div class="alert alert-<%= status %>">
+                    <%= message %>
+                </div>
+                <% } } } catch(err){ console.log('addcat: message or something is not defined') }%>
+                    <div class="form-group">
+                        <input type="text" required class="form-control" name="catname" placeholder="Category name">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Add category</button>
+                    </div>
+
+        </form>
+        <% try { if(locals.categories){ %>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>Category id</th>
+                        <th>Category name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% categories.forEach(cat=>{ %>
+                        <tr>
+                            <td><%= cat.catid %></td>
+                            <td><%= cat.catname %></td>
+                        </tr>
+                    <% }) %>
+                    
+                </tbody>
+            </table>
+            <% } } catch(err){
+                console.log('error => '+err+' <=')
+            } %>
+    </div>
+
+
+
+    <script src="/js/addtext.js"></script>
+</body>
+
+</html>
